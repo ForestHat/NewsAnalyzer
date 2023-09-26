@@ -23,3 +23,9 @@ To do this, run:
 ```bash
  python3 start.py
 ```
+
+### Test
+For testing, change the variable called t
+```python3
+ t = "Наса открыло новую луну Юпитера"
+```
