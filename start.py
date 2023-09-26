@@ -10,19 +10,19 @@ import tensorflow
 
 with open('games.txt', 'r', encoding='utf-8') as f:
     games = f.readlines()
-    games[0] = games[0].replace('\ufeff', '') #убираем первый невидимый символ
+    games[0] = games[0].replace('\ufeff', '') 
 
 with open('politics.txt', 'r', encoding='utf-8') as f:
     politics = f.readlines()
-    politics[0] = politics[0].replace('\ufeff', '') #убираем первый невидимый символ
+    politics[0] = politics[0].replace('\ufeff', '') 
 
 with open('science.txt', 'r', encoding='utf-8') as f:
     science = f.readlines()
-    science[0] = science[0].replace('\ufeff', '') #убираем первый невидимый символ
+    science[0] = science[0].replace('\ufeff', '') 
 
 with open('technology.txt', 'r', encoding='utf-8') as f:
     technology = f.readlines()
-    technology[0] = technology[0].replace('\ufeff', '') #убираем первый невидимый символ
+    technology[0] = technology[0].replace('\ufeff', '') 
 
 texts = games + politics + science + technology
 
