@@ -49,3 +49,5 @@ if argv[1] is not None:
         print("politics")
     else:
         print("games")
+else:
+    print('Give the test data! Example: python3 main.py "Test example"')
