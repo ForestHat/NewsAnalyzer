@@ -9,7 +9,7 @@
 ```
 
 ### Test
-For testing, change the variable called t
+For testing, add third argument in quotes
 ```bash
  python3 main.py "Test case"
 ```
