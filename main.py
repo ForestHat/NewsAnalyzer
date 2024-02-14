@@ -38,7 +38,7 @@ preparate_data_to_train(["train_data/technology.txt",
                          "train_data/politics.txt",
                          "train_data/games.txt"], [0, 1, 2, 3])
 
-if argv[1] != None:
+if argv[1] is not None:
     predict = get_predict(argv[1])
 
     if predict == [0]:
