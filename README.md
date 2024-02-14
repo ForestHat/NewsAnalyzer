@@ -5,7 +5,7 @@
 ### Install dependencies
 
 ```bash
- pip3 install scikit-learn
+ pip3 install -r requirements.txt
 ```
 
 ### Test
