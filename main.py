@@ -38,13 +38,14 @@ preparate_data_to_train(["train_data/technology.txt",
                          "train_data/politics.txt",
                          "train_data/games.txt"], [0, 1, 2, 3])
 
-predict = get_predict(argv[1])
+if argv[1] != None:
+    predict = get_predict(argv[1])
 
-if predict == [0]:
-    print("technology")
-elif predict == [1]:
-    print("science")
-elif predict == [2]:
-    print("politics")
-else:
-    print("games")
+    if predict == [0]:
+        print("technology")
+    elif predict == [1]:
+        print("science")
+    elif predict == [2]:
+        print("politics")
+    else:
+        print("games")
