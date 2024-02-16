@@ -2,6 +2,8 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sys import argv
+from os.path import exists
+from pickle import dump, load
 
 input_result: list[str] = []
 output_result: list[str] = []
@@ -31,24 +33,34 @@ def get_predict(example: str):
 
     score = clf.predict(vectorizer.transform([example]))
 
+    save_to_file(clf, vectorizer)
+
+    return score
+
+def get_predict_from_file(example: str):
+    data = read_from_file()
+    clf: SVC = data[0]
+    vectorizer: TfidfVectorizer = data[1]
+
+    score = clf.predict(vectorizer.transform([example]))
+
     return score
 
 def save_to_file(clf: SVC, vectorizer: TfidfVectorizer) -> None:
-    print("Save to file")
     with open("clf.pickle", "wb") as file1:
-        pickle.dump(clf, file1)
+        dump(clf, file1)
 
     with open("vectorizer.pickle", "wb") as file2:
-        pickle.dump(vectorizer, file2)
+        dump(vectorizer, file2)
 
 def read_from_file() -> list[SVC, TfidfVectorizer]:
     result = []
 
     with open("clf.pickle", "rb") as file1:
-        result.append(pickle.load(file1))
+        result.append(load(file1))
 
     with open("vectorizer.pickle", "rb") as file2:
-        result.append(pickle.load(file2))
+        result.append(load(file2))
 
     return result
 
@@ -58,7 +70,13 @@ preparate_data_to_train(["train_data/technology.txt",
                          "train_data/games.txt"], [0, 1, 2, 3])
 
 if argv[1] is not None:
-    predict = get_predict(argv[1])
+    predict: list[int] = []
+    bin_exist: bool = exists("clf.pickle") and exists("vectorizer.pickle")
+
+    if bin_exist:
+        predict.extend(get_predict_from_file(argv[1]))
+    else:
+        predict.extend(get_predict(argv[1]))
 
     if predict == [0]:
         print("technology")
