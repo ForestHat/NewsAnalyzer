@@ -33,6 +33,25 @@ def get_predict(example: str):
 
     return score
 
+def save_to_file(clf: SVC, vectorizer: TfidfVectorizer) -> None:
+    print("Save to file")
+    with open("clf.pickle", "wb") as file1:
+        pickle.dump(clf, file1)
+
+    with open("vectorizer.pickle", "wb") as file2:
+        pickle.dump(vectorizer, file2)
+
+def read_from_file() -> list[SVC, TfidfVectorizer]:
+    result = []
+
+    with open("clf.pickle", "rb") as file1:
+        result.append(pickle.load(file1))
+
+    with open("vectorizer.pickle", "rb") as file2:
+        result.append(pickle.load(file2))
+
+    return result
+
 preparate_data_to_train(["train_data/technology.txt",
                          "train_data/science.txt",
                          "train_data/politics.txt",
