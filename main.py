@@ -69,22 +69,35 @@ preparate_data_to_train(["train_data/technology.txt",
                          "train_data/politics.txt",
                          "train_data/games.txt"], [0, 1, 2, 3])
 
-if argv[1] is not None:
-    predict: list[int] = []
-    bin_exist: bool = exists("clf.pickle") and exists("vectorizer.pickle")
-
-    if bin_exist:
-        predict.extend(get_predict_from_file(argv[1]))
-    else:
-        predict.extend(get_predict(argv[1]))
-
-    if predict == [0]:
-        print("technology")
-    elif predict == [1]:
-        print("science")
-    elif predict == [2]:
-        print("politics")
-    else:
-        print("games")
-else:
+try:
+    s = argv[1]
+except Exception as err:
     print('Give the test data! Example: python3 main.py "Test example"')
+    exit()
+
+recompile: bool = False
+try:
+    test = argv[2]
+
+    if test == "recompile":
+        recompile = True
+
+except Exception as err:
+    pass
+
+predict: list[int] = []
+bin_exist: bool = exists("clf.pickle") and exists("vectorizer.pickle")
+
+if bin_exist and recompile == False:
+    predict.extend(get_predict_from_file(argv[1]))
+else:
+    predict.extend(get_predict(argv[1]))
+
+if predict == [0]:
+    print("technology")
+elif predict == [1]:
+    print("science")
+elif predict == [2]:
+    print("politics")
+else:
+    print("games")
